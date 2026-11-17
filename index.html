@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>나도랩스 · NADO Labs</title>
+<meta name="description" content="나도 쓰려고 만든 앱. 로그인 없이 한 가지 일을 제대로 하는 앱을 만드는 1인 소프트웨어 스튜디오, 나도랩스(NADO Labs).">
+<meta property="og:title" content="나도랩스 · NADO Labs">
+<meta property="og:description" content="나도 쓰려고 만든 앱.">
+<meta property="og:url" content="https://nadolabs.com/">
+<link rel="canonical" href="https://nadolabs.com/">
+<meta property="og:image" content="https://nadolabs.com/assets/og_1200x630.png">
+<meta name="theme-color" content="#12161C">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12161C; --paper:#F6F5F1; --dot:#F5521A;
+  --bg:var(--paper); --fg:var(--ink); --sub:#666D7A; --line:rgba(18,22,28,.12);
+  --card:#FFFFFF; --card2:#ECEAE4; --shadow:0 1px 2px rgba(18,22,28,.06),0 12px 32px -12px rgba(18,22,28,.18);
+  --r:20px; --max:1080px;
+}
+:root[data-theme="dark"]{
+  --bg:var(--ink); --fg:var(--paper); --sub:#9AA1AD; --line:rgba(246,245,241,.14);
+  --card:#1A2029; --card2:#222A35; --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -16px rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:var(--ink); --fg:var(--paper); --sub:#9AA1AD; --line:rgba(246,245,241,.14);
+    --card:#1A2029; --card2:#222A35; --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -16px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;transition:background .3s,color .3s}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);display:flex;align-items:center;gap:.6em;margin:0 0 14px}
+.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--dot)}
+h1,h2,h3{line-height:1.25;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.7rem,4.2vw,2.6rem);font-weight:800}
+p{margin:0}
+.lead{color:var(--sub);font-size:clamp(1rem,1.6vw,1.12rem);max-width:60ch;margin-top:14px}
+section{padding:clamp(64px,10vw,120px) 0;border-top:1px solid var(--line)}
+:focus-visible{outline:3px solid var(--dot);outline-offset:3px;border-radius:8px}
+
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;letter-spacing:.01em}
+.brand svg{height:18px;width:auto}
+.brand b{font-weight:800}.brand span{font-weight:500;margin-left:-4px}
+.nav nav{margin-left:auto;display:flex;gap:4px}
+.nav nav a{text-decoration:none;font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:999px;color:var(--sub)}
+.nav nav a:hover,.nav nav a.on{color:var(--fg);background:var(--card2)}
+.tbtn{border:1px solid var(--line);background:none;color:var(--fg);width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center;flex:none}
+.tbtn:hover{background:var(--card2)}
+@media (max-width:640px){.nav{gap:8px}.nav nav a{padding:8px 8px;font-size:.85rem}.brand span,.brand b{display:none}}
+
+.hero{border-top:0;padding:clamp(56px,9vw,110px) 0 clamp(64px,9vw,110px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.4rem,7.4vw,4.6rem);font-weight:800}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.16em;background:var(--dot);border-radius:99px;transform-origin:left;animation:under 1s .5s both cubic-bezier(.2,.8,.2,1)}
+@keyframes under{from{transform:scaleX(0)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:500;color:var(--sub)}
+.stage{position:relative;aspect-ratio:1/1;max-width:440px;width:100%;margin-inline:auto;border-radius:32px;background:var(--ink);box-shadow:var(--shadow);display:grid;place-items:center;cursor:pointer;user-select:none;overflow:hidden;border:1px solid var(--line);touch-action:manipulation}
+.stage svg{width:66%;height:auto;overflow:visible}
+.stage .glyph{fill:#fff}
+#dot{fill:var(--dot);transition:transform .25s cubic-bezier(.2,.9,.3,1.4);transform-box:fill-box;transform-origin:center}
+.stage.pop #dot{animation:pop .5s cubic-bezier(.2,.9,.3,1.6)}
+@keyframes pop{30%{transform:translateY(-70px) scale(1.25)}60%{transform:translateY(8px) scale(.92)}}
+.hint{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#9AA1AD;font-size:.82rem}
+.burst{position:absolute;pointer-events:none;font-weight:800;color:#fff;font-size:1.1rem;animation:fly 1s ease-out forwards;white-space:nowrap}
+.burst i{color:var(--dot);font-style:normal}
+@keyframes fly{from{opacity:1;transform:translate(-50%,-50%) scale(.6)}to{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.25)}}
+.count{position:absolute;top:16px;right:18px;color:#9AA1AD;font-size:.82rem;font-variant-numeric:tabular-nums}
+
+.name-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);margin-top:40px;align-items:stretch}
+@media (max-width:820px){.name-grid{grid-template-columns:1fr}}
+.seg{display:inline-flex;background:var(--card2);border-radius:999px;padding:4px;gap:2px}
+.seg button{border:0;background:none;color:var(--sub);font:inherit;font-weight:700;padding:9px 18px;border-radius:999px;cursor:pointer;min-height:44px}
+.seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.board{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);min-height:260px;display:grid;place-items:center;padding:28px;position:relative;overflow:hidden}
+.big{font-size:clamp(3.4rem,11vw,6.4rem);font-weight:800;letter-spacing:-.03em;line-height:1;animation:rise .45s cubic-bezier(.2,.8,.2,1)}
+.big small{font-size:.42em;font-weight:500;letter-spacing:0}
+.big .o{color:var(--dot)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.explain h3{font-size:1.3rem;margin:22px 0 8px}
+.explain p{color:var(--sub)}
+
+.ci-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:40px}
+.tile{border-radius:var(--r);border:1px solid var(--line);display:grid;place-items:center;padding:28px;min-height:190px;position:relative}
+.tile small{position:absolute;left:16px;bottom:12px;font-size:.78rem;opacity:.7}
+.t-paper{background:#F6F5F1;color:#12161C;grid-column:span 7}
+.t-ink{background:#12161C;color:#F6F5F1;grid-column:span 5}
+.t-icon{background:var(--card);grid-column:span 4}
+.t-ko{background:#F6F5F1;color:#12161C;grid-column:span 4}
+.t-mono{background:#666D7A;color:#fff;grid-column:span 4}
+@media (max-width:820px){.tile{grid-column:span 12 !important;min-height:150px}}
+.lock{display:flex;align-items:center;justify-content:center;gap:5%;width:86%}
+.lock svg{width:26%;height:auto;flex:none}
+.lock img{width:60%;height:auto}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media (max-width:640px){.swatches{grid-template-columns:repeat(2,1fr)}}
+.sw{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);cursor:pointer;text-align:left;font:inherit;color:inherit;padding:0;transition:transform .2s,box-shadow .2s}
+.sw i{display:block;height:84px;border-bottom:1px solid var(--line)}
+.sw b{display:block;padding:10px 14px 0;font-size:.95rem}
+.sw span{display:block;padding:0 14px 12px;color:var(--sub);font-size:.84rem;font-variant-numeric:tabular-nums}
+.sw:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.cards{grid-template-columns:1fr}}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.pc .n{font-weight:800;color:var(--dot);font-variant-numeric:tabular-nums}
+.pc h3{font-size:1.2rem;margin:10px 0 8px}
+.pc p{color:var(--sub);font-size:.95rem}
+
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media (max-width:900px){.apps{grid-template-columns:1fr}}
+.app{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease-out,box-shadow .25s;will-change:transform}
+.app:hover{box-shadow:var(--shadow)}
+.art{height:200px;display:grid;place-items:center;position:relative;overflow:hidden}
+.a1{background:linear-gradient(160deg,#0E7C66,#094F41)}
+.a1 img{width:104px;height:104px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.a2{background:#12161C;perspective:600px}
+.cube{width:84px;height:84px;position:relative;transform-style:preserve-3d;animation:spin 14s linear infinite}
+.cube i{position:absolute;inset:0;border:2px solid rgba(246,245,241,.85);border-radius:10px;background:rgba(246,245,241,.04)}
+.cube i:nth-child(1){transform:translateZ(42px)}.cube i:nth-child(2){transform:rotateY(180deg) translateZ(42px)}
+.cube i:nth-child(3){transform:rotateY(90deg) translateZ(42px)}.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(42px)}
+.cube i:nth-child(5){transform:rotateX(90deg) translateZ(42px)}.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(42px)}
+.cube b{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border-radius:50%;background:var(--dot);box-shadow:0 0 24px var(--dot)}
+@keyframes spin{to{transform:rotateX(360deg) rotateY(360deg)}}
+.a3{background:var(--card2)}
+.px{display:grid;grid-template-columns:repeat(8,18px);gap:4px}
+.px i{width:18px;height:18px;border-radius:4px;background:var(--line);transition:background .25s}
+.px i.on{background:var(--fg)}.px i.hot{background:var(--dot)}
+.body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.st{align-self:flex-start;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--sub);display:flex;align-items:center;gap:6px}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot)}
+.st.live::before{animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.app h3{font-size:1.35rem}
+.app h3 small{font-size:.6em;font-weight:500;color:var(--sub);margin-left:.3em}
+.app p{color:var(--sub);font-size:.96rem}
+.app ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.app li{font-size:.8rem;background:var(--card2);border-radius:999px;padding:3px 10px;color:var(--sub)}
+.by{margin-top:auto;padding-top:14px;font-size:.82rem;color:var(--sub)}.by b{color:var(--fg)}
+
+.steps{margin-top:40px;display:grid;counter-reset:s}
+.step{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-weight:800;font-size:1.1rem;color:var(--dot);font-variant-numeric:tabular-nums;padding-top:2px}
+.step h3{font-size:1.15rem;margin-bottom:4px}.step p{color:var(--sub)}
+
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);font-size:.88rem}
+.foot{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.foot svg{height:16px;width:auto;vertical-align:-2px;margin-right:8px;color:var(--fg)}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.9rem;font-weight:500;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 676 350">
+    <path d="M0,18 Q0,0 18,0 L86,0 Q104,0 104,18 L104,246 L292,246 Q310,246 310,264 L310,332 Q310,350 292,350 L18,350 Q0,350 0,332 Z M366,18 Q366,0 384,0 L658,0 Q676,0 676,18 L676,86 Q676,104 658,104 L470,104 L470,246 L658,246 Q676,246 676,264 L676,332 Q676,350 658,350 L384,350 Q366,350 366,332 Z" fill="currentColor"/>
+    <circle cx="258" cy="52" r="52" fill="#F5521A"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="나도랩스 처음으로"><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg><b>NADO</b><span>Labs</span></a>
+    <nav aria-label="주요 메뉴">
+      <a href="#about">소개</a><a href="#ci">CI</a><a href="#apps">앱</a><a href="#how">방식</a>
+    </nav>
+    <button class="tbtn" id="theme" aria-label="밝은 화면과 어두운 화면 바꾸기" title="화면 테마">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">NADO Labs · 나도랩스</p>
+      <h1><em>나도</em> 쓰려고<br>만든 앱.</h1>
+      <p class="lead">나도랩스는 로그인 없이, 한 가지 일을 제대로 하는 앱을 만드는 1인 소프트웨어 스튜디오입니다. 만든 사람이 첫 번째 사용자입니다.</p>
+      <div class="chips" aria-label="나도랩스의 원칙">
+        <span class="chip">로그인 없음</span><span class="chip">한 가지를 제대로</span><span class="chip">단정하지 않기</span><span class="chip">가볍게</span>
+      </div>
+    </div>
+    <div class="stage" id="stage" role="button" tabindex="0" aria-label="나도랩스 심볼. 누르면 나도! 가 튀어나옵니다">
+      <span class="count" id="count" aria-live="polite"></span>
+      <svg viewBox="0 0 676 350" aria-hidden="true">
+        <path class="glyph" d="M0,18 Q0,0 18,0 L86,0 Q104,0 104,18 L104,246 L292,246 Q310,246 310,264 L310,332 Q310,350 292,350 L18,350 Q0,350 0,332 Z M366,18 Q366,0 384,0 L658,0 Q676,0 676,18 L676,86 Q676,104 658,104 L470,104 L470,246 L658,246 Q676,246 676,264 L676,332 Q676,350 658,350 L384,350 Q366,350 366,332 Z"/>
+        <circle id="dot" cx="258" cy="52" r="52"/>
+      </svg>
+      <span class="hint">눌러 보세요</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow rv">회사 소개</p>
+    <h2 class="rv">이름에 만드는 이유를 담았습니다.</h2>
+    <p class="lead rv">"이런 거 있으면 좋겠다" 싶었던 것을 직접 만듭니다. 필요했던 사람이 만들면 군더더기가 줄어든다고 믿습니다.</p>
+    <div class="name-grid">
+      <div class="board rv" aria-live="polite"><div class="big" id="big">ㄴㄷ</div></div>
+      <div class="explain rv">
+        <div class="seg" role="tablist" aria-label="이름의 세 가지 모습">
+          <button role="tab" aria-selected="true">ㄴㄷ</button>
+          <button role="tab" aria-selected="false">나도</button>
+          <button role="tab" aria-selected="false">NADO</button>
+        </div>
+        <h3 id="ex-h">채팅에서 쓰는 "ㄴㄷ"</h3>
+        <p id="ex-p">누가 "이거 필요해"라고 하면 "ㄴㄷ(나도)"라고 답합니다. 그 한마디가 출발점입니다. 심볼은 이 두 자음을 같은 굵기의 획으로 나란히 놓고, 손을 드는 느낌의 점 하나를 찍었습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ci">
+  <div class="wrap">
+    <p class="eyebrow rv">CI</p>
+    <h2 class="rv">잉크와 종이, 그리고 점 하나.</h2>
+    <p class="lead rv">앱마다 고유한 색을 쓰기 때문에 나도랩스 자체는 무채색으로 물러나 있습니다. 주황은 점 하나에만 씁니다.</p>
+    <div class="ci-grid">
+      <div class="tile t-paper rv"><div class="lock"><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg><img src="assets/wordmark_en_ink.svg" alt="NADO Labs 가로형 로고"></div><small>가로형 · 기본</small></div>
+      <div class="tile t-ink rv"><div class="lock"><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg><img src="assets/wordmark_en_white.svg" alt="NADO Labs 로고, 어두운 배경"></div><small>어두운 배경</small></div>
+      <div class="tile t-icon rv"><svg viewBox="0 0 1024 1024" style="width:120px;height:120px" role="img" aria-label="나도랩스 아이콘"><rect width="1024" height="1024" rx="230" fill="#12161C"/><svg x="174" y="337" width="676" height="350" viewBox="0 0 676 350" color="#fff"><use href="#mark"/></svg></svg><small>아이콘</small></div>
+      <div class="tile t-ko rv"><div class="lock"><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg><img src="assets/wordmark_ko_ink.svg" alt="나도랩스 국문 로고"></div><small>국문</small></div>
+      <div class="tile t-mono rv"><div class="lock"><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg><img src="assets/wordmark_en_white.svg" alt="NADO Labs 로고, 회색 배경"></div><small>색 배경 위</small></div>
+    </div>
+    <div class="swatches">
+      <button class="sw rv" data-hex="#12161C"><i style="background:#12161C"></i><b>잉크</b><span>#12161C</span></button>
+      <button class="sw rv" data-hex="#F6F5F1"><i style="background:#F6F5F1"></i><b>종이</b><span>#F6F5F1</span></button>
+      <button class="sw rv" data-hex="#F5521A"><i style="background:#F5521A"></i><b>주황 점</b><span>#F5521A</span></button>
+      <button class="sw rv" data-hex="#666D7A"><i style="background:#666D7A"></i><b>회색</b><span>#666D7A</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="promise">
+  <div class="wrap">
+    <p class="eyebrow rv">약속</p>
+    <h2 class="rv">새 앱을 낼 때마다 확인하는 네 가지.</h2>
+    <div class="cards">
+      <article class="pc rv"><span class="n">01</span><h3>나도 쓴다</h3><p>만든 사람이 실제로 필요했던 문제만 다룹니다.</p></article>
+      <article class="pc rv"><span class="n">02</span><h3>바로 쓴다</h3><p>회원가입과 로그인 없이, 첫 화면에서 답이 보여야 합니다.</p></article>
+      <article class="pc rv"><span class="n">03</span><h3>단정하지 않는다</h3><p>데이터가 말해 주는 만큼만 말하고, 출처와 기준 시각을 밝힙니다.</p></article>
+      <article class="pc rv"><span class="n">04</span><h3>가볍다</h3><p>기기 안에서 끝낼 수 있는 일은 기기 안에서 끝냅니다. 개인정보를 쌓지 않습니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap">
+    <p class="eyebrow rv">개발 중인 앱</p>
+    <h2 class="rv">지금 만들고 있는 것.</h2>
+    <p class="lead rv">아직 출시 전이거나 준비 단계입니다. 상태는 그때그때 고쳐 적습니다.</p>
+    <div class="apps">
+      <article class="app rv" data-tilt>
+        <div class="art a1"><img src="assets/pharmnow.svg" alt="지금약국 아이콘" width="104" height="104"></div>
+        <div class="body">
+          <span class="st live">출시 준비 중 · Android</span>
+          <h3>지금약국</h3>
+          <p>밤이나 휴일에 약이 급할 때, 지금 운영시간으로 등록된 약국을 가까운 순서로 보여 줍니다. "영업중"이라고 단정하지 않고, 가기 전에 전화로 확인할 수 있게 전화 버튼을 가장 크게 두었습니다.</p>
+          <ul><li>휴일·심야 약국</li><li>응급실·상비약 판매처</li><li>공공데이터</li><li>로그인 없음</li></ul>
+          <p class="by">by <b>NADO</b> Labs</p>
+        </div>
+      </article>
+      <article class="app rv" data-tilt>
+        <div class="art a2" aria-hidden="true"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div></div>
+        <div class="body">
+          <span class="st live">개발 중</span>
+          <h3>마이파트너 <small>가칭</small></h3>
+          <p>화면 속에서 곁을 지키는 3D 보조 AI 비서입니다. 말을 걸면 대답하고, 하던 일을 거들어 주는 것을 목표로 만들고 있습니다. 이름과 기능은 아직 바뀔 수 있습니다.</p>
+          <ul><li>3D 캐릭터</li><li>AI 비서</li><li>이름 미정</li></ul>
+          <p class="by">by <b>NADO</b> Labs</p>
+        </div>
+      </article>
+      <article class="app rv" data-tilt>
+        <div class="art a3" aria-hidden="true"><div class="px" id="px"></div></div>
+        <div class="body">
+          <span class="st">준비 중</span>
+          <h3>게임 <small>제목 미정</small></h3>
+          <p>AI 도구 Claude와 함께 게임을 만들 예정입니다. 무엇을 만들지는 아직 정하지 않았습니다. 정해지면 이 자리에 적겠습니다.</p>
+          <ul><li>게임</li><li>AI와 함께 개발</li><li>기획 전</li></ul>
+          <p class="by">by <b>NADO</b> Labs</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow rv">만드는 방식</p>
+    <h2 class="rv">작게 만들고, 많이 확인합니다.</h2>
+    <div class="steps">
+      <div class="step rv"><div><h3>필요에서 시작</h3><p>직접 겪은 불편에서 주제를 고릅니다. 이미 잘하는 앱이 있으면 만들지 않습니다.</p></div></div>
+      <div class="step rv"><div><h3>AI와 함께 개발</h3><p>기획, 코드, 디자인 검수까지 AI 도구와 함께 진행합니다. 혼자서도 여러 앱을 꾸준히 돌볼 수 있는 이유입니다.</p></div></div>
+      <div class="step rv"><div><h3>사람처럼 써 보기</h3><p>큰 글씨를 쓰는 어르신, 급한 보호자, 외국인처럼 서로 다른 사용자를 가정해 반복해서 써 보고 고칩니다.</p></div></div>
+      <div class="step rv"><div><h3>출시 뒤에도 정직하게</h3><p>모르는 것은 모른다고 적고, 틀린 것은 고쳤다고 적습니다.</p></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span><svg viewBox="0 0 676 350" aria-hidden="true"><use href="#mark"/></svg>© 2026 나도랩스 · NADO Labs</span>
+    <span>나도 쓰려고 만든 앱.</span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 테마
+  try{var saved=localStorage.getItem('theme'); if(saved) root.dataset.theme=saved;}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var dark=root.dataset.theme? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark';
+    try{localStorage.setItem('theme',root.dataset.theme);}catch(e){}
+  });
+  // 히어로 심볼: 점이 포인터를 따라 살짝 움직이고, 누르면 "나도!"
+  var stage=document.getElementById('stage'), dot=document.getElementById('dot'), count=document.getElementById('count'), n=0;
+  var words=['나도!','ㄴㄷ','나도 필요해','me too','나도요','+1'];
+  if(!reduce) stage.addEventListener('pointermove',function(e){
+    var r=stage.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    dot.style.transform='translate('+(x*46)+'px,'+(y*46)+'px)';
+  });
+  stage.addEventListener('pointerleave',function(){dot.style.transform='';});
+  function hit(cx,cy){
+    n++; count.textContent='나도 × '+n;
+    stage.classList.remove('pop'); void stage.offsetWidth; stage.classList.add('pop');
+    if(reduce) return;
+    for(var i=0;i<3;i++){
+      var s=document.createElement('span'); s.className='burst';
+      var w=words[(n+i)%words.length];
+      if(i===0){var b=document.createElement('i'); b.textContent=w; s.appendChild(b);} else s.textContent=w;
+      var a=Math.random()*Math.PI*2, d=70+Math.random()*90;
+      s.style.left=cx+'px'; s.style.top=cy+'px';
+      s.style.setProperty('--dx',Math.cos(a)*d+'px'); s.style.setProperty('--dy',(Math.sin(a)*d-40)+'px');
+      stage.appendChild(s); setTimeout(function(el){el.remove();},1000,s);
+    }
+  }
+  stage.addEventListener('click',function(e){var r=stage.getBoundingClientRect(); hit((e.clientX||r.left+r.width/2)-r.left,(e.clientY||r.top+r.height/2)-r.top);});
+  stage.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault(); hit(stage.clientWidth/2,stage.clientHeight/2);} });
+  // 이름 탭
+  var data=[
+    ['ㄴㄷ','채팅에서 쓰는 "ㄴㄷ"','누가 "이거 필요해"라고 하면 "ㄴㄷ(나도)"라고 답합니다. 그 한마디가 출발점입니다. 심볼은 이 두 자음을 같은 굵기의 획으로 나란히 놓고, 손을 드는 느낌의 점 하나를 찍었습니다.'],
+    ['나도<span class="o">.</span>','"나도 필요해서 만들었다"','만든 사람이 첫 번째 사용자입니다. 내가 매일 쓸 수 없는 앱은 내지 않습니다. 그래서 회원가입을 요구하지 않고, 첫 화면에서 바로 답을 보여 주려고 합니다.'],
+    ['NADO <small>Labs</small>','작은 연구실, NADO Labs','Labs는 계속 실험하고 고친다는 뜻입니다. 약국 찾기 앱에서 3D AI 비서, 게임까지. 분야는 달라도 "나도 쓰고 싶은가"라는 기준은 같습니다.']
+  ];
+  var big=document.getElementById('big'), eh=document.getElementById('ex-h'), ep=document.getElementById('ex-p'), tabs=[].slice.call(document.querySelectorAll('.seg button'));
+  function pick(k){
+    tabs.forEach(function(t,i){t.setAttribute('aria-selected',i===k);});
+    big.innerHTML=data[k][0]; big.style.animation='none'; void big.offsetWidth; big.style.animation='';
+    eh.textContent=data[k][1]; ep.textContent=data[k][2];
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){pick(i);});
+    t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var j=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length; tabs[j].focus(); pick(j);} });
+  });
+  // 색 복사
+  var toast=document.getElementById('toast'), tt;
+  [].forEach.call(document.querySelectorAll('.sw'),function(b){
+    b.setAttribute('aria-label',b.querySelector('b').textContent+' '+b.dataset.hex+' 복사');
+    b.addEventListener('click',function(){
+      var done=function(ok){toast.textContent=ok?b.dataset.hex+' 복사했어요':b.dataset.hex; toast.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('on');},1600);};
+      if(navigator.clipboard) navigator.clipboard.writeText(b.dataset.hex).then(function(){done(true);},function(){done(false);}); else done(false);
+    });
+  });
+  // 앱 카드 기울임
+  if(!reduce && matchMedia('(hover:hover)').matches) [].forEach.call(document.querySelectorAll('[data-tilt]'),function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5; c.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-4px)';});
+    c.addEventListener('pointerleave',function(){c.style.transform='';});
+  });
+  // 게임 카드: 픽셀 그림이 계속 바뀐다(무엇이 될지 아직 모른다는 뜻)
+  var px=document.getElementById('px'), cells=[];
+  for(var i=0;i<48;i++){var c=document.createElement('i'); px.appendChild(c); cells.push(c);}
+  var shapes=[
+    '00111100'+'01000010'+'10100101'+'10000001'+'10111101'+'01111110',
+    '01100110'+'11111111'+'11111111'+'01111110'+'00111100'+'00011000',
+    '00111100'+'01000010'+'00000100'+'00011000'+'00000000'+'00011000'
+  ], si=0;
+  function draw(){var s=shapes[si++%shapes.length]; cells.forEach(function(c,i){c.className=s[i]==='1'?(Math.random()<.12?'hot':'on'):'';});}
+  draw(); if(!reduce) setInterval(draw,1800);
+  // 스크롤 등장 + 메뉴 표시
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });},{threshold:.12});
+  [].forEach.call(document.querySelectorAll('.rv'),function(el,i){el.style.transitionDelay=(i%4)*60+'ms'; io.observe(el);});
+  var links=[].slice.call(document.querySelectorAll('.nav nav a'));
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);}); });},{rootMargin:'-45% 0px -50% 0px'});
+  ['about','ci','apps','how'].forEach(function(id){so.observe(document.getElementById(id));});
+})();
+</script>
+</body>
+</html>
