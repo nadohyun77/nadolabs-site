@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nadolabs.com/pharmnow/sitemap.xml
