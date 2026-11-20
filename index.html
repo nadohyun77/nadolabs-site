@@ -124,7 +124,7 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 8
 .pc h3{font-size:1.2rem;margin:10px 0 8px}
 .pc p{color:var(--sub);font-size:.95rem}
 
-.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:40px}
 @media (max-width:900px){.apps{grid-template-columns:1fr}}
 .app{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease-out,box-shadow .25s;will-change:transform}
 .app:hover{box-shadow:var(--shadow)}
@@ -141,6 +141,8 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 8
 .cube i:nth-child(5){transform:rotateX(90deg) translateZ(42px)}.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(42px)}
 .cube b{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border-radius:50%;background:var(--dot);box-shadow:0 0 24px var(--dot)}
 @keyframes spin{to{transform:rotateX(360deg) rotateY(360deg)}}
+.a4{background:linear-gradient(160deg,#ECEBFF,#CFCBFF)}
+.a4 img{width:104px;height:104px;border-radius:24px;box-shadow:0 10px 30px rgba(59,47,196,.35);animation:float 5s ease-in-out infinite;animation-delay:-2.5s}
 .a3{background:var(--card2)}
 .px{display:grid;grid-template-columns:repeat(8,18px);gap:4px}
 .px i{width:18px;height:18px;border-radius:4px;background:var(--line);transition:background .25s}
@@ -284,6 +286,17 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
           <p>밤이나 휴일에 약이 급할 때, 지금 운영시간으로 등록된 약국을 가까운 순서로 보여 줍니다. "영업중"이라고 단정하지 않고, 가기 전에 전화로 확인할 수 있게 전화 버튼을 가장 크게 두었습니다.</p>
           <ul><li>휴일·심야 약국</li><li>밤·주말 진료 병원</li><li>응급실·상비약 판매처</li><li>로그인 없음</li></ul>
           <a class="web" href="/pharmnow/">웹에서 지역별 휴일·심야 약국 보기 <span aria-hidden="true">→</span></a>
+          <p class="by">by <b>NADO</b> Labs</p>
+        </div>
+      </article>
+      <article class="app rv" data-tilt>
+        <div class="art a4"><img src="assets/harupuzzle.svg" alt="하루퍼즐 아이콘" width="104" height="104"></div>
+        <div class="body">
+          <span class="st live">출시 준비 중 · Android</span>
+          <h3>하루퍼즐</h3>
+          <p>매일 새 문제가 나오는 논리 퍼즐 모음입니다. 스도쿠, 노노그램, 흑백 퍼즐, 별 퍼즐을 날마다 한 판씩 풀 수 있고, 같은 날에는 모두가 같은 문제를 받습니다. 답이 하나뿐인 문제만 내고, 기록은 기기에만 저장합니다. 웹에서는 설치 없이 바로 할 수 있습니다.</p>
+          <ul><li>스도쿠</li><li>노노그램</li><li>흑백·별 퍼즐</li><li>로그인 없음</li><li>9개 언어</li></ul>
+          <a class="web" href="https://harupuzzle.com/" rel="noopener">웹에서 바로 풀어 보기 <span aria-hidden="true">→</span></a>
           <p class="by">by <b>NADO</b> Labs</p>
         </div>
       </article>
