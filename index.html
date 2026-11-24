@@ -546,7 +546,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
     if(navigator.clipboard) navigator.clipboard.writeText(MAIL).then(function(){say('메일 주소를 복사했어요');},function(){say(MAIL);}); else say(MAIL);
   });
   var cf=document.getElementById('cform'), cb=document.getElementById('c-body'), cc=document.getElementById('c-count'), ce=document.getElementById('c-err');
-  cb.addEventListener('input',function(){cc.textContent=cb.value.length+' / 1500'; if(cb.value.trim()) ce.textContent='';});
+  cb.addEventListener('input',function(){cc.textContent=cb.value.length+' / 1500'; if(cb.value.trim()) ce.textContent=''; done.hidden=true;});
   function $(id){return document.getElementById(id);}
   function vals(){return {type:$('c-type').value, app:$('c-app').value, email:$('c-email').value.trim(), name:$('c-name').value.trim(), subject:$('c-subj').value.trim(), body:cb.value.trim()};}
   function mailtoHref(v){
@@ -571,7 +571,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
         if(res.ok){
           done.innerHTML=''; var b=document.createElement('b'); b.textContent='보냈습니다.'; done.appendChild(b);
           done.appendChild(document.createTextNode(' '+v.email+' 로 답장드리겠습니다. 며칠이 걸릴 수 있습니다.'));
-          done.hidden=false; cf.reset(); cc.textContent='0 / 1500'; send.textContent='보내기';
+          done.hidden=false; cf.reset(); cc.textContent='0 / 1500'; send.textContent='보내기'; send.disabled=false; opened=Date.now();
         } else fail(res.err==='email'?'메일 주소를 확인해 주세요.':null);
       },function(){fail(null);});
     function fail(msg){
