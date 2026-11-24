@@ -1,0 +1,9 @@
+# nadolabs.com 문의 폼 발송 Worker. 비밀값 DEST(받는 메일함)는 `wrangler secret put DEST`로 넣는다.
+name = "nadolabs-contact"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
+routes = [{ pattern = "api.nadolabs.com", custom_domain = true }]
+
+[[send_email]]
+name = "EMAIL"

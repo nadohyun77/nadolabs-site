@@ -24,7 +24,7 @@
 <p>나도랩스(NADO Labs, 이하 "회사")는 「개인정보 보호법」에 따라 이용자의 개인정보를 보호하고, 관련 고충을 빠르게 처리하기 위해 이 방침을 둡니다.</p>
 
 <h2>1. 적용 범위</h2>
-<p>이 방침은 회사 홈페이지(nadolabs.com)와 문의 메일(contact@nadolabs.com)에 적용됩니다. 각 앱의 개인정보 처리는 앱별 방침을 따릅니다.</p>
+<p>이 방침은 회사 홈페이지(nadolabs.com), 홈페이지 문의 폼, 문의 메일(contact@nadolabs.com)에 적용됩니다. 각 앱의 개인정보 처리는 앱별 방침을 따릅니다.</p>
 <ul>
   <li>지금약국: <a href="/pharmnow/privacy.html">nadolabs.com/pharmnow/privacy.html</a></li>
   <li>하루퍼즐: <a href="https://harupuzzle.com/privacy">harupuzzle.com/privacy</a></li>
@@ -34,25 +34,25 @@
 <p>홈페이지에는 회원가입·로그인이 없고, 방문 분석 도구나 광고 추적 쿠키를 쓰지 않습니다.</p>
 <ul>
   <li><strong>화면 설정:</strong> 밝은·어두운 화면 선택은 방문자의 브라우저 저장소에만 저장되며 회사로 전송되지 않습니다.</li>
-  <li><strong>문의 칸:</strong> 홈페이지의 문의 칸에 적은 내용은 페이지가 저장하거나 전송하지 않습니다. "메일 앱으로 보내기"를 누르면 방문자의 메일 앱이 내용을 채운 채로 열리고, 실제로 보낼지는 방문자가 정합니다.</li>
+  <li><strong>문의 폼:</strong> 문의 폼에서 동의하고 "보내기"를 누르면 적은 내용이 회사의 접수 서버(api.nadolabs.com, Cloudflare Workers)로 전송되고, 그 서버가 메일로 바꿔 회사 메일함에 넣습니다. 접수 서버는 내용을 따로 저장하지 않습니다. "메일 앱으로 쓰기"를 누르면 방문자의 메일 앱이 열리고 아무것도 전송되지 않습니다.</li>
   <li><strong>접속 기록:</strong> 홈페이지는 GitHub Pages(GitHub, Inc.)에서 제공되며, 이 과정에서 GitHub가 IP 주소 등 일반적인 접속 기록을 처리할 수 있습니다. 글꼴은 Google Fonts(Google LLC)에서 불러오며 Google이 IP 주소 등 기술 정보를 처리할 수 있습니다. 회사는 이 기록을 받거나 방문자를 식별하는 데 쓰지 않습니다.</li>
 </ul>
 
-<h2>3. 메일 문의로 받는 정보</h2>
+<h2>3. 문의(폼·메일)로 받는 정보</h2>
 <table>
   <tr><th>항목</th><th>목적</th><th>보유 기간</th></tr>
-  <tr><td>보낸 사람 메일 주소, (적은 경우) 이름, 문의 내용, 첨부 파일, 받은 시각</td><td>문의 확인과 답장, 오류 재현과 수정, 같은 문의의 이전 기록 확인</td><td>답장을 마친 날부터 1년. 그 뒤 지체 없이 삭제합니다. 법령에 따라 보관해야 하는 경우 그 기간 동안 보관합니다.</td></tr>
+  <tr><td>필수: 답장 받을 메일 주소, 문의 내용, 문의 종류·관련 앱, 받은 시각<br>선택: 이름, 제목, (메일의 경우) 첨부 파일</td><td>문의 확인과 답장, 오류 재현과 수정, 같은 문의의 이전 기록 확인</td><td>답장을 마친 날부터 1년. 그 뒤 지체 없이 삭제합니다. 법령에 따라 보관해야 하는 경우 그 기간 동안 보관합니다.</td></tr>
 </table>
 <p>회사는 문의로 받은 정보를 위 목적 밖으로 쓰지 않으며, 판매하거나 광고에 쓰지 않습니다. 이용자가 원하지 않는 개인정보(주민등록번호, 비밀번호, 건강 정보 등)는 적지 말아 주세요. 실수로 받은 경우 답장에 필요한 범위가 아니면 바로 삭제합니다.</p>
 
 <h2>4. 처리 위탁과 국외 이전</h2>
-<p>회사는 메일을 받고 보관하기 위해 아래 사업자의 서비스를 씁니다. 이용자가 메일을 보내면 정보가 네트워크를 통해 아래 국가의 서버로 전송됩니다.</p>
+<p>회사는 문의를 받고 보관하기 위해 아래 사업자의 서비스를 씁니다. 이용자가 문의 폼으로 보내거나 메일을 보내면 정보가 네트워크를 통해 아래 국가의 서버로 전송됩니다.</p>
 <table>
   <tr><th>받는 자</th><th>국가</th><th>업무</th><th>항목</th><th>보유 기간</th></tr>
-  <tr><td>Cloudflare, Inc.</td><td>미국</td><td>contact@nadolabs.com 메일 수신·전달</td><td>메일 주소, 메일 내용</td><td>전달 처리에 필요한 기간</td></tr>
+  <tr><td>Cloudflare, Inc.</td><td>미국</td><td>문의 폼 접수·메일 발송(api.nadolabs.com), contact@nadolabs.com 메일 수신·전달</td><td>메일 주소, 이름, 문의 내용</td><td>접수·전달 처리에 필요한 기간(따로 저장하지 않음)</td></tr>
   <tr><td>Google LLC (Gmail)</td><td>미국</td><td>메일 보관과 답장</td><td>메일 주소, 이름, 메일 내용, 첨부</td><td>3번의 보유 기간과 같음</td></tr>
 </table>
-<p>국외 이전을 원하지 않으시면 메일 문의를 하지 않으실 수 있습니다. 다만 이 경우 회사가 답장을 드릴 방법이 없습니다.</p>
+<p>문의 폼은 이용자가 위 국외 이전을 포함한 수집·이용에 동의한 경우에만 보냅니다. 국외 이전을 원하지 않으시면 문의를 하지 않으실 수 있습니다. 다만 이 경우 회사가 답장을 드릴 방법이 없습니다.</p>
 
 <h2>5. 파기 방법</h2>
 <p>보유 기간이 끝난 메일과 첨부 파일은 메일함에서 영구 삭제합니다.</p>
@@ -83,8 +83,8 @@
 <h1>Privacy Policy — NADO Labs</h1>
 <p><small>Last updated: 2026-11-24</small></p>
 <p>This policy covers the NADO Labs website (nadolabs.com) and email sent to contact@nadolabs.com. Each app has its own policy (<a href="/pharmnow/privacy.html">Open Pharmacy Now</a>, <a href="https://harupuzzle.com/privacy">Haru Puzzle</a>).</p>
-<p><strong>Website.</strong> No sign-up, no analytics, no ad-tracking cookies. Your light/dark choice is stored only in your browser. The contact form on the page stores and sends nothing; it opens your own mail app with the text filled in, and you decide whether to send. The site is served by GitHub Pages (GitHub, Inc.) and loads fonts from Google Fonts (Google LLC), which may process technical data such as your IP address. We do not receive it.</p>
-<p><strong>Email.</strong> When you email us we receive your email address, name (if given), message, attachments and time received. We use them only to read and answer your message and to fix reported problems, and delete them one year after we reply unless the law requires longer. Mail is received and forwarded by Cloudflare, Inc. (USA) and stored in Gmail (Google LLC, USA).</p>
+<p><strong>Website.</strong> No sign-up, no analytics, no ad-tracking cookies. Your light/dark choice is stored only in your browser. If you agree and press "Send" on the contact form, your message is sent to our intake server (api.nadolabs.com, Cloudflare Workers), which emails it to our inbox and stores nothing itself. "Write in mail app" opens your own mail app and sends nothing. The site is served by GitHub Pages (GitHub, Inc.) and loads fonts from Google Fonts (Google LLC), which may process technical data such as your IP address. We do not receive it.</p>
+<p><strong>Form and email.</strong> When you use the form or email us we receive your email address, name (if given), message, attachments and time received. We use them only to read and answer your message and to fix reported problems, and delete them one year after we reply unless the law requires longer. Mail is received and forwarded by Cloudflare, Inc. (USA) and stored in Gmail (Google LLC, USA).</p>
 <p><strong>Your rights.</strong> You can ask us to show, correct or delete your messages at contact@nadolabs.com.</p>
 <p><strong>Contact.</strong> <a href="mailto:contact@nadolabs.com">contact@nadolabs.com</a></p>
 </body>

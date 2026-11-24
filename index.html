@@ -194,8 +194,18 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 8
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--fg)}
 .field .meta{display:flex;justify-content:space-between;gap:12px;font-size:.8rem;color:var(--sub)}
 .field .meta span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
-.form .note{font-size:.84rem;color:var(--sub)}
-.form .note a{color:var(--fg)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form{position:relative}
+.consent{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:.86rem;color:var(--sub);line-height:1.6}
+.consent input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--dot)}
+.consent b{color:var(--fg)}
+.consent a{color:var(--fg)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
+.actions .mailapp{font-size:.9rem;color:var(--sub);text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.actions .mailapp:hover{color:var(--fg)}
+.btn[disabled]{opacity:.55;cursor:wait}
+.done{background:var(--card2);border-radius:12px;padding:14px 16px;font-size:.95rem}
+.done b{color:var(--fg)}
 .form .err{font-size:.86rem;color:#C2410C;min-height:1.2em}
 :root[data-theme="dark"] .form .err{color:#FB923C}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .form .err{color:#FB923C}}
@@ -402,8 +412,19 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
             </select>
           </div>
         </div>
+        <div class="row2">
+          <div class="field">
+            <label for="c-email">답장 받을 메일 주소</label>
+            <input id="c-email" type="email" maxlength="120" autocomplete="email" inputmode="email" required placeholder="name@example.com">
+          </div>
+          <div class="field">
+            <label for="c-name">이름 <span>(선택)</span></label>
+            <input id="c-name" type="text" maxlength="40" autocomplete="name">
+          </div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="c-web">비워 두세요</label><input id="c-web" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="field">
-          <label for="c-subj">제목</label>
+          <label for="c-subj">제목 <span>(선택)</span></label>
           <input id="c-subj" type="text" maxlength="80" autocomplete="off" placeholder="예: 즐겨찾기한 약국이 위젯에 안 보여요">
         </div>
         <div class="field">
@@ -411,9 +432,16 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
           <textarea id="c-body" maxlength="1500" placeholder="자세히 적어 주실수록 정확하게 답할 수 있습니다."></textarea>
           <div class="meta"><span>개인정보(주민번호, 비밀번호 등)는 적지 마세요.</span><span id="c-count">0 / 1500</span></div>
         </div>
+        <div class="consent">
+          <input id="c-ok" type="checkbox">
+          <label for="c-ok"><b>개인정보 수집·이용에 동의합니다.</b> 메일 주소, 이름(적은 경우), 문의 내용을 답장과 오류 수정에만 쓰고, 답장을 마친 날부터 1년 뒤 삭제합니다. 동의하지 않으셔도 위 주소로 직접 메일을 보내실 수 있습니다. <a href="/privacy.html">개인정보처리방침</a></label>
+        </div>
         <p class="err" id="c-err" role="alert"></p>
-        <button class="btn btn-main" type="submit">메일 앱으로 보내기</button>
-        <p class="note">이 칸에 적은 내용은 이 페이지가 저장하거나 전송하지 않습니다. 버튼을 누르면 쓰시는 메일 앱이 내용을 채운 채로 열리고, 보내기는 직접 누르시면 됩니다. 메일로 받은 정보의 처리는 <a href="/privacy.html">개인정보처리방침</a>에 적어 두었습니다.</p>
+        <div class="actions">
+          <button class="btn btn-main" type="submit" id="c-send">보내기</button>
+          <a class="mailapp" id="c-mailapp" href="mailto:contact@nadolabs.com">메일 앱으로 쓰기</a>
+        </div>
+        <p class="done" id="c-done" role="status" hidden></p>
       </form>
     </div>
   </div>
@@ -511,21 +539,45 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
   var links=[].slice.call(document.querySelectorAll('.nav nav a'));
   var so=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);}); });},{rootMargin:'-45% 0px -50% 0px'});
   ['about','ci','apps','how','contact'].forEach(function(id){so.observe(document.getElementById(id));});
-  // 문의: 서버가 없으므로 적은 내용으로 메일을 채워 메일 앱을 연다(저장·전송 없음)
-  var MAIL='contact@nadolabs.com';
+  // 문의: api.nadolabs.com(Cloudflare Worker)이 받아 대표 메일함으로 보낸다. 실패하면 메일 앱으로 쓰기를 안내한다
+  var MAIL='contact@nadolabs.com', API='https://api.nadolabs.com/', opened=Date.now();
   function say(msg){toast.textContent=msg; toast.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('on');},1800);}
   document.getElementById('copy-mail').addEventListener('click',function(){
     if(navigator.clipboard) navigator.clipboard.writeText(MAIL).then(function(){say('메일 주소를 복사했어요');},function(){say(MAIL);}); else say(MAIL);
   });
   var cf=document.getElementById('cform'), cb=document.getElementById('c-body'), cc=document.getElementById('c-count'), ce=document.getElementById('c-err');
   cb.addEventListener('input',function(){cc.textContent=cb.value.length+' / 1500'; if(cb.value.trim()) ce.textContent='';});
+  function $(id){return document.getElementById(id);}
+  function vals(){return {type:$('c-type').value, app:$('c-app').value, email:$('c-email').value.trim(), name:$('c-name').value.trim(), subject:$('c-subj').value.trim(), body:cb.value.trim()};}
+  function mailtoHref(v){
+    var tag='['+v.type+(v.app!=='해당 없음'?' · '+v.app:'')+'] ';
+    var text=v.body+'\n\n—\n문의 종류: '+v.type+'\n관련 앱: '+v.app+(v.type==='오류 신고'?'\n기기·앱 버전: ':'');
+    return 'mailto:'+MAIL+'?subject='+encodeURIComponent(tag+(v.subject||v.type))+'&body='+encodeURIComponent(text);
+  }
+  // "메일 앱으로 쓰기"는 적어 둔 내용을 채워서 연다
+  $('c-mailapp').addEventListener('click',function(){this.href=mailtoHref(vals());});
+  var send=$('c-send'), done=$('c-done');
   cf.addEventListener('submit',function(e){
     e.preventDefault();
-    var type=document.getElementById('c-type').value, app=document.getElementById('c-app').value, subj=document.getElementById('c-subj').value.trim(), body=cb.value.trim();
-    if(!body){ce.textContent='내용을 적어 주세요.'; cb.focus(); return;}
-    var tag='['+type+(app!=='해당 없음'?' · '+app:'')+'] ';
-    var text=body+'\n\n—\n문의 종류: '+type+'\n관련 앱: '+app+(type==='오류 신고'?'\n기기·앱 버전: ':'');
-    location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(tag+(subj||type))+'&body='+encodeURIComponent(text);
+    var v=vals();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)){ce.textContent='답장 받을 메일 주소를 확인해 주세요.'; $('c-email').focus(); return;}
+    if(!v.body){ce.textContent='내용을 적어 주세요.'; cb.focus(); return;}
+    if(!$('c-ok').checked){ce.textContent='개인정보 수집·이용에 동의해 주셔야 보낼 수 있습니다. 동의하지 않으시면 "메일 앱으로 쓰기"를 이용해 주세요.'; $('c-ok').focus(); return;}
+    ce.textContent=''; send.disabled=true; send.textContent='보내는 중…';
+    v.consent=true; v.website=$('c-web').value; v.t=opened;
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(v)})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok&&j.ok,err:j.error};},function(){return {ok:false};});})
+      .then(function(res){
+        if(res.ok){
+          done.innerHTML=''; var b=document.createElement('b'); b.textContent='보냈습니다.'; done.appendChild(b);
+          done.appendChild(document.createTextNode(' '+v.email+' 로 답장드리겠습니다. 며칠이 걸릴 수 있습니다.'));
+          done.hidden=false; cf.reset(); cc.textContent='0 / 1500'; send.textContent='보내기';
+        } else fail(res.err==='email'?'메일 주소를 확인해 주세요.':null);
+      },function(){fail(null);});
+    function fail(msg){
+      send.disabled=false; send.textContent='보내기';
+      ce.textContent=msg||'지금 보내지 못했습니다. 잠시 뒤 다시 시도하시거나 "메일 앱으로 쓰기"를 눌러 주세요.';
+    }
   });
 })();
 </script>
