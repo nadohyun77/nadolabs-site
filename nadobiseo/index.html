@@ -57,7 +57,16 @@ h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:800}
 .pc h3{font-size:1.15rem;margin:8px 0 6px}
 .pc p{color:var(--sub);font-size:.95rem}
 .cast{display:flex;gap:10px;margin-top:36px;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 16px 0;justify-content:space-between}
+.cast{padding-bottom:14px}
+.cast figure{margin:0;display:flex;flex-direction:column;align-items:center;min-width:0}
 .cast img{height:170px;width:auto}
+.cast figcaption{margin-top:6px;font-size:.7rem;line-height:1.3;color:#9097A3;text-align:center;white-space:nowrap}
+.uses{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px}
+.use{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.use small{display:block;font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--blue);margin-bottom:8px}
+.use h3{font-size:1.2rem;margin-bottom:10px}
+.use p{color:var(--sub);font-size:.97rem;text-wrap:pretty}
+.use p+p{margin-top:8px}
 .steps{margin-top:30px;display:grid;counter-reset:s}
 .step{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line)}
 .step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-weight:800;color:var(--dot)}
@@ -83,7 +92,7 @@ body.b .cards .pc{border:0;background:#EEF1FF}
 body.b .pc b.n{color:var(--blue)}
 body.b .step::before{color:var(--blue)}
 body.b .eyebrow::before{background:#FFD79A}
-@media (max-width:820px){.hero-grid>*{min-width:0}.stage{height:400px}.stage img.who,body.b .stage img.who{height:330px;left:0}.bubble{left:0;top:0;max-width:190px}.bubble.b2{right:0;top:auto;bottom:70px}.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.cast img{height:110px}}
+@media (max-width:820px){.hero-grid>*{min-width:0}.stage{height:400px}.stage img.who,body.b .stage img.who{height:330px;left:0}.bubble{left:0;top:0;max-width:190px}.bubble.b2{right:0;top:auto;bottom:70px}.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.uses{grid-template-columns:1fr}.use{padding:22px}.cast{flex-wrap:wrap;justify-content:center;gap:14px 10px}.cast img{height:110px}}
 </style>
 </head>
 <body class="b">
@@ -124,10 +133,31 @@ body.b .eyebrow::before{background:#FFD79A}
 
 <section>
   <div class="wrap">
+    <h2>이럴 때 씁니다.</h2>
+    <p class="sub">하루 일과 속에서 나도비서가 하는 일을 상황별로 적었습니다.</p>
+    <div class="uses">
+      <article class="use"><small>작업 상태 보기</small><h3>긴 작업을 맡겨 두고 다른 일을 할 때</h3><p>Claude Code에 코드 수정이나 문서 정리를 시켜 두면 몇 분씩 걸립니다. 그동안 터미널 창을 계속 들여다볼 필요가 없습니다. 캐릭터가 생각 중인지, 파일을 고치는 중인지, 명령을 실행하는 중인지 표정과 말풍선으로 보여 줍니다.</p><p>작업이 끝나면 끝났다고 알려 주므로, 다른 창에서 일하다가 화면 한쪽만 슬쩍 보면 됩니다.</p></article>
+      <article class="use"><small>확인 요청</small><h3>AI가 내 허락을 기다리는 걸 놓치고 싶지 않을 때</h3><p>AI가 명령을 실행하기 전에 허락을 구하며 멈춰 있는데, 모르고 한참 뒤에야 돌아온 적이 있을 겁니다. 나도비서는 확인이 필요해지는 순간 표정을 바꾸고 말풍선으로 알립니다.</p><p>짧고 단순한 명령은 내용을 그대로 보여 주고 그 자리에서 답할 수 있습니다. 길거나 여러 개가 이어진 명령은 내용을 줄여 보여 주지 않고, Claude 창에서 직접 보고 답하라고 안내합니다.</p></article>
+      <article class="use"><small>말 걸기</small><h3>브라우저를 열기 번거로운 짧은 질문이 생겼을 때</h3><p>엑셀 함수 하나, 메일 문장 하나, 낯선 용어 하나. 캐릭터를 누르면 입력칸이 바로 열리고, 답은 말풍선과 카드로 돌아옵니다. 하던 일의 창을 떠나지 않아도 됩니다.</p><p>지난 대화는 내 PC에 남아 있어 이어서 물을 수 있고, 기억하기를 켜 두면 내 취향과 최근 대화를 참고해 같은 추천을 되풀이하지 않습니다.</p></article>
+      <article class="use"><small>파일 · 화면 글자 읽기</small><h3>파일이나 화면에 뜬 내용을 물어보고 싶을 때</h3><p>문서 파일을 보여 주고 요약이나 점검을 부탁할 수 있습니다. 복사가 안 되는 오류 창이나 그림 속 글자는 화면의 한 부분을 잡아 글자로 읽어 냅니다.</p><p>글자 읽기는 AI를 거치지 않고 내 PC 안에서 처리합니다.</p></article>
+      <article class="use"><small>일 맡기기</small><h3>폴더 정리처럼 손이 많이 가는 일을 넘기고 싶을 때</h3><p>작업 폴더를 정하고 “종류별로 정리해 줘”, “회의록들을 요약해서 문서로 만들어 줘”처럼 말하면 됩니다. AI는 먼저 무엇을 어떻게 바꿀지 계획만 세워 보여 줍니다.</p><p>내가 “실행”을 눌러야 파일이 바뀌고, 정한 폴더 밖은 건드리지 않습니다. 실행한 뒤에는 되돌리기를 할 수 있습니다.</p></article>
+      <article class="use"><small>달력 · 메모 · 타이머 · 브리핑</small><h3>오늘 할 일을 곁에 두고 싶을 때</h3><p>달력에 일정을 적고, 떠오른 것은 메모로 남기고, 집중 타이머로 시간을 끊어 씁니다. 이 세 가지는 AI 연결 없이도 동작합니다.</p><p>브리핑을 누르면 오늘 일정과 메모, AI가 해 둔 작업을 한 장으로 모아 줍니다. 모두 내 PC에만 저장합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <h2>캐릭터 10종, 색은 마음대로.</h2>
     <p class="sub">머리·눈·옷 색을 바꿀 수 있고, 가지고 있는 VRM 캐릭터 파일을 추가할 수도 있습니다.</p>
     <div class="cast">
-      <img src="img/01_Basic_Female.png" alt=""><img src="img/04_Office_Yuzuki.png" alt=""><img src="img/05_Suit_Shizuka.png" alt=""><img src="img/06_Businessman.png" alt=""><img src="img/08_Lumens.png" alt=""><img src="img/09_Cat_Calico.png" alt=""><img src="img/10_Victoria_Rubin.png" alt="">
+      <figure><img src="img/01_Basic_Female.png" alt=""><figcaption>VRoid 공식 샘플</figcaption></figure>
+      <figure><img src="img/04_Office_Yuzuki.png" alt=""><figcaption>Tovie</figcaption></figure>
+      <figure><img src="img/05_Suit_Shizuka.png" alt=""><figcaption>wev</figcaption></figure>
+      <figure><img src="img/06_Businessman.png" alt=""><figcaption>陽気婢</figcaption></figure>
+      <figure><img src="img/08_Lumens.png" alt=""><figcaption>yomox9</figcaption></figure>
+      <figure><img src="img/09_Cat_Calico.png" alt=""><figcaption>Elyiana</figcaption></figure>
+      <figure><img src="img/10_Victoria_Rubin.png" alt=""><figcaption>VRoid 공식 샘플</figcaption></figure>
     </div>
   </div>
 </section>
@@ -146,6 +176,6 @@ body.b .eyebrow::before{background:#FFD79A}
   </div>
 </section>
 
-<footer><div class="wrap">© 2026 나도랩스 · NADO Labs — 캐릭터 제작: VRoid 공식 샘플(pixiv), Tovie, wev, 陽気婢, ネセネセ, yomox9, Elyiana · <a href="terms.html" style="color:inherit">이용 안내</a> · <a href="privacy.html" style="color:inherit">개인정보처리방침</a> · <a href="/" style="color:inherit">nadolabs.com</a> · 문의 contact@nadolabs.com<br>Claude, Claude Code는 Anthropic, PBC의 상표입니다.</div></footer>
+<footer><div class="wrap">© 2026 나도랩스 · NADO Labs — 캐릭터: VRoid ·<a href="terms.html" style="color:inherit">이용 안내</a> · <a href="privacy.html" style="color:inherit">개인정보처리방침</a> · <a href="/" style="color:inherit">nadolabs.com</a> · 문의 contact@nadolabs.com<br>Claude, Claude Code는 Anthropic, PBC의 상표입니다.</div></footer>
 </body>
 </html>
