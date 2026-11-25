@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지금약국 · 휴일·심야 약국 찾기 — 나도랩스</title>
+<meta name="description" content="밤이나 휴일에 약이 급할 때, 지금 운영시간으로 등록된 약국을 가까운 순으로 보여 주는 지금약국. 웹에서 지역별 휴일·심야 약국을 바로 볼 수 있습니다. 나도랩스(NADO Labs)가 만듭니다.">
+<link rel="canonical" href="https://nadolabs.com/apps/pharmnow/">
+<meta property="og:title" content="지금약국 — 나도랩스">
+<meta property="og:description" content="밤·휴일에 지금 운영시간인 약국을 가까운 순으로.">
+<meta property="og:url" content="https://nadolabs.com/apps/pharmnow/">
+<meta property="og:image" content="https://nadolabs.com/apps/pharmnow/img/shot-1.webp">
+<meta name="theme-color" content="#0E7C66">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"지금약국","alternateName":"Open Pharmacy Now","applicationCategory":"MedicalApplication","operatingSystem":"Web","url":"https://nadolabs.com/apps/pharmnow/","sameAs":["https://nadolabs.com/pharmnow/"],"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"publisher":{"@id":"https://nadolabs.com/#org"}}
+</script>
+<script>try{var t=localStorage.getItem('theme'); if(t) document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/gnb.css">
+<link rel="stylesheet" href="/apps/app.css">
+<style>
+:root{--app:#0E7C66;--app2:#094F41;--app-a:#0E7C66;--app-b:#094F41;--app-t:#0E7C66}
+:root[data-theme="dark"]{--app-t:#4FD1B0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--app-t:#4FD1B0}}
+</style>
+</head>
+<body>
+<header class="gnb">
+  <div class="gnb-in">
+    <a class="gnb-brand" href="/" aria-label="나도랩스 처음으로"><svg viewBox="0 0 676 350" aria-hidden="true"><path d="M0,18 Q0,0 18,0 L86,0 Q104,0 104,18 L104,246 L292,246 Q310,246 310,264 L310,332 Q310,350 292,350 L18,350 Q0,350 0,332 Z M366,18 Q366,0 384,0 L658,0 Q676,0 676,18 L676,86 Q676,104 658,104 L470,104 L470,246 L658,246 Q676,246 676,264 L676,332 Q676,350 658,350 L384,350 Q366,350 366,332 Z" fill="currentColor"/><circle cx="258" cy="52" r="52" fill="#F5521A"/></svg><b>NADO</b><span>Labs</span></a>
+    <nav class="gnb-nav" aria-label="주요 메뉴">
+      <a href="/#about">소개</a><a href="/#ci">CI</a>
+      <div class="gnb-apps">
+        <button type="button" aria-expanded="false" aria-controls="gnb-menu">앱<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="gnb-menu" id="gnb-menu" hidden>
+          <a href="/apps/pharmnow/"><img src="/assets/pharmnow.svg" alt="" width="38" height="38"><span>지금약국<small>휴일·심야 약국 찾기 · 출시 준비 중</small></span></a>
+          <a href="/apps/harupuzzle/"><img src="/assets/harupuzzle.svg" alt="" width="38" height="38"><span>하루퍼즐<small>매일 새 논리 퍼즐 · 출시</small></span></a>
+          <a href="/nadobiseo/"><img src="/assets/nadobiseo.svg" alt="" width="38" height="38"><span>나도비서<small>바탕화면 AI 비서 · 출시 준비 중</small></span></a>
+          <a class="all" href="/#apps">모든 앱 한눈에 보기</a>
+        </div>
+      </div>
+      <a href="/#how">방식</a><a href="/#contact">문의</a>
+    </nav>
+    <button class="gnb-theme" type="button" aria-label="밝은 화면과 어두운 화면 바꾸기" title="화면 테마"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+  </div>
+</header>
+
+<main>
+<div class="wrap crumb"><a href="/">나도랩스</a> › <a href="/#apps">앱</a> › 지금약국</div>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="id"><img src="/assets/pharmnow.svg" alt="지금약국 아이콘" width="76" height="76"><div><span class="st">출시 준비 중 · Android · 웹</span><h1>지금약국</h1></div></div>
+      <p class="lead">밤이나 휴일에 약이 급할 때, 지금 운영시간으로 등록된 약국을 가까운 순서로 보여 줍니다. "영업중"이라고 단정하지 않고, 가기 전에 전화로 확인할 수 있게 전화 버튼을 가장 크게 두었습니다.</p>
+      <div class="cta">
+        <a class="btn pri" href="/pharmnow/">웹에서 지역별 약국 보기 <span aria-hidden="true">→</span></a>
+        <span class="btn off" aria-disabled="true">Google Play 출시 준비 중</span>
+      </div>
+      <p class="meta">무료 · 로그인 없음 · 공공데이터 기준</p>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <img src="img/shot-1.webp" alt="" width="540" height="960">
+      <img src="img/shot-2.webp" alt="" width="540" height="960">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">무엇을 하나요</p>
+    <h2>급할 때 바로 찾고, 가기 전에 확인합니다.</h2>
+    <div class="feat">
+      <article><b class="n">01</b><h3>지금 열린 약국</h3><p>내 위치에서 가까운 순으로 보여 줍니다. 공공심야약국과 오늘 휴일지킴이 약국을 따로 표시합니다.</p></article>
+      <article><b class="n">02</b><h3>전화 먼저</h3><p>전화 버튼이 가장 큽니다. 통화한 뒤 "열려 있었나요?"에 답하면 내 기기의 목록에 반영합니다.</p></article>
+      <article><b class="n">03</b><h3>닫혔다면 다른 길</h3><p>밤·주말 진료 병원, 응급실 직통 번호, 상비약을 파는 편의점까지 바로 이어서 보여 줍니다.</p></article>
+    </div>
+    <p class="note"><b>꼭 알아 두세요.</b> 공공데이터에 등록된 운영시간을 보여 줄 뿐 실제 영업 여부를 보장하지 않습니다. 가기 전에 꼭 전화로 확인해 주세요. 약 복용과 진료는 약사·의사와 상의하세요.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">화면</p>
+    <h2>앱 화면</h2>
+    <div class="shots">
+      <figure><img src="img/shot-1.webp" alt="지금 운영시간인 약국을 가까운 순으로 보여 주는 화면" width="540" height="960" loading="lazy"><figcaption>지금 운영시간인 약국</figcaption></figure>
+      <figure><img src="img/shot-2.webp" alt="응급실과 상비약 판매처를 보여 주는 화면" width="540" height="960" loading="lazy"><figcaption>응급실·상비약 판매처</figcaption></figure>
+      <figure><img src="img/shot-3.webp" alt="통화 후 열려 있었는지 묻는 화면" width="540" height="960" loading="lazy"><figcaption>통화 후 확인</figcaption></figure>
+      <figure><img src="img/shot-4.webp" alt="어두운 화면 모드" width="540" height="960" loading="lazy"><figcaption>어두운 화면</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">바로 가기</p>
+    <h2>지금약국 관련 링크</h2>
+    <div class="links">
+      <a href="/pharmnow/"><span>웹 버전<small>지역별 휴일·심야 약국</small></span><span aria-hidden="true">→</span></a>
+      <a href="/pharmnow/privacy.html"><span>개인정보처리방침<small>지금약국</small></span><span aria-hidden="true">→</span></a>
+      <a href="/#contact"><span>문의하기<small>오류 신고·제안</small></span><span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 나도랩스 · NADO Labs</span>
+    <nav aria-label="바닥글 메뉴">
+      <a href="mailto:contact@nadolabs.com">contact@nadolabs.com</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+    </nav>
+  </div>
+</footer>
+<script src="/assets/gnb.js" defer></script>
+</body>
+</html>

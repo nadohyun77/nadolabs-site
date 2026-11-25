@@ -11,6 +11,7 @@
 <link rel="canonical" href="https://nadolabs.com/nadobiseo/">
 <meta name="theme-color" content="#2A3B92">
 <link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/gnb.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -96,7 +97,24 @@ body.b .eyebrow::before{background:#FFD79A}
 </style>
 </head>
 <body class="b">
-<header><div class="wrap nav"><img src="img/icon.svg" alt="">나도비서<span><a href="/" style="color:inherit">by NADO Labs</a></span></div></header>
+<header class="gnb">
+  <div class="gnb-in">
+    <a class="gnb-brand" href="/" aria-label="나도랩스 처음으로"><svg viewBox="0 0 676 350" aria-hidden="true"><path d="M0,18 Q0,0 18,0 L86,0 Q104,0 104,18 L104,246 L292,246 Q310,246 310,264 L310,332 Q310,350 292,350 L18,350 Q0,350 0,332 Z M366,18 Q366,0 384,0 L658,0 Q676,0 676,18 L676,86 Q676,104 658,104 L470,104 L470,246 L658,246 Q676,246 676,264 L676,332 Q676,350 658,350 L384,350 Q366,350 366,332 Z" fill="currentColor"/><circle cx="258" cy="52" r="52" fill="#F5521A"/></svg><b>NADO</b><span>Labs</span></a>
+    <nav class="gnb-nav" aria-label="주요 메뉴">
+      <a href="/#about">소개</a><a href="/#ci">CI</a>
+      <div class="gnb-apps">
+        <button type="button" aria-expanded="false" aria-controls="gnb-menu">앱<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="gnb-menu" id="gnb-menu" hidden>
+          <a href="/apps/pharmnow/"><img src="/assets/pharmnow.svg" alt="" width="38" height="38"><span>지금약국<small>휴일·심야 약국 찾기 · 출시 준비 중</small></span></a>
+          <a href="/apps/harupuzzle/"><img src="/assets/harupuzzle.svg" alt="" width="38" height="38"><span>하루퍼즐<small>매일 새 논리 퍼즐 · 출시</small></span></a>
+          <a href="/nadobiseo/"><img src="/assets/nadobiseo.svg" alt="" width="38" height="38"><span>나도비서<small>바탕화면 AI 비서 · 출시 준비 중</small></span></a>
+          <a class="all" href="/#apps">모든 앱 한눈에 보기</a>
+        </div>
+      </div>
+      <a href="/#how">방식</a><a href="/#contact">문의</a>
+    </nav>
+  </div>
+</header>
 
 <section class="hero" style="border-top:0">
   <div class="wrap hero-grid">
@@ -177,5 +195,6 @@ body.b .eyebrow::before{background:#FFD79A}
 </section>
 
 <footer><div class="wrap">© 2026 나도랩스 · NADO Labs — 캐릭터: VRoid ·<a href="terms.html" style="color:inherit">이용 안내</a> · <a href="privacy.html" style="color:inherit">개인정보처리방침</a> · <a href="/" style="color:inherit">nadolabs.com</a> · 문의 contact@nadolabs.com<br>Claude, Claude Code는 Anthropic, PBC의 상표입니다.</div></footer>
+<script src="/assets/gnb.js" defer></script>
 </body>
 </html>
