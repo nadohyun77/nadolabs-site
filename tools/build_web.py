@@ -381,8 +381,9 @@ def foot(ctx: Ctx) -> str:
     <p>{E(NOTICE)}</p>
     <p>데이터 기준 {E(ctx.date_text)} · 출처: {E(SOURCES)}</p>
     <p>이 페이지는 의료 상담이나 약 추천을 하지 않아요. 약에 관한 것은 약사·의사에게 물어보세요.</p>
-    <p class="links"><a href="{BASE}/">지금약국 처음</a><a href="{BASE}/privacy.html">개인정보처리방침</a><a href="https://nadolabs.com/">NADO Labs</a></p>
+    <p class="links"><a href="{BASE}/">지금약국 처음</a><a href="{BASE}/privacy.html">개인정보처리방침</a><a href="https://nadolabs.com/">NADO Labs</a><a href="https://blog.naver.com/nadolabs" rel="noopener">블로그</a></p>
     <p class="copy">{MARK}© {ctx.when.year} 나도랩스 · NADO Labs</p>
+    <p class="biz">상호 <a href="https://nadolabs.com/">나도랩스 (NADO Labs)</a> · 대표 안도현 · 사업자등록번호 381-13-03245</p>
   </div>
 </footer>
 <script src="{BASE}/assets/pharmnow.js?v={ctx.asset_v}" defer></script>
@@ -857,6 +858,7 @@ summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weig
 .foot .links a{display:inline-flex;align-items:center;min-height:44px}
 .foot .copy{display:flex;align-items:center;gap:8px;margin-top:8px}
 .foot .mark{height:12px;width:auto;color:var(--fg)}
+.foot .biz a{color:inherit;text-underline-offset:3px}
 @media (min-width:900px){.cards{grid-template-columns:1fr 1fr}.near-box .cards{grid-template-columns:1fr}h1{margin-top:8px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 """

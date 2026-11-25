@@ -69,3 +69,5 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);fon
 .foot nav{display:flex;flex-wrap:wrap;gap:4px 18px}
 .foot nav a{color:var(--sub);text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .foot nav a:hover{color:var(--fg)}
+.foot .biz{flex-basis:100%;margin:0}
+.foot .biz a{color:inherit;text-underline-offset:3px}
