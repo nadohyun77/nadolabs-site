@@ -1,0 +1,1 @@
+function e(e,t){if(!Number.isFinite(e))return!1;let n=e*10**t;return Math.abs(n-Math.round(n))<1e-6}function t(e,t){if(!Number.isFinite(e))throw RangeError(`유한한 숫자가 아닙니다: ${String(e)}`);return BigInt(Math.round(e*10**t))}function n(e){let t=Number(e);if(!Number.isSafeInteger(t))throw RangeError(`금액이 너무 커서 정확히 계산할 수 없습니다.`);return t}export{n,t as r,e as t};

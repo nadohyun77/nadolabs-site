@@ -1,0 +1,1 @@
+function e(e){return`${Math.round(e).toLocaleString(`ko-KR`)}원`}function t(e,t){if(t<=0)throw RangeError(`unit은 0보다 커야 합니다.`);return Math.floor(e/t)*t}function n(e,t){return e*Math.round(t*1e4)/1e6}function r(e){let t=e.replace(/[,\s원]/g,``);return t===``||!/^\d+(\.\d+)?$/.test(t)?null:Number(t)}export{r as i,t as n,e as r,n as t};
