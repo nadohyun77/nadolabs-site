@@ -46,7 +46,7 @@ import urllib.request
 from pathlib import Path
 
 # ── 설정 ────────────────────────────────────────────────────────────────
-PLAY_URL = ""  # Google Play 주소. 비어 있으면 앱 소개 블록을 내보내지 않는다.
+PLAY_URL = "https://play.google.com/store/apps/details?id=com.nadolabs.pharmnow"  # Google Play 주소. 비어 있으면 앱 소개 블록을 내보내지 않는다.
 ADSENSE_CLIENT = ""  # 예: "ca-pub-1234567890123456". 비어 있으면 광고 코드를 전혀 내보내지 않는다.
 ADSENSE_SLOT = ""  # 본문 광고 단위 ID(data-ad-slot). ADSENSE_CLIENT 와 둘 다 있을 때만 본문 자리를 만든다.
 
